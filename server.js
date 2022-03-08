@@ -28,6 +28,17 @@ app.post('/Time', (req, res) => {
 	res.json(response)
 })
 
+app.post('/ChangeMultiplicator', (req, res) => {
+	logReq('ChangeMultiplicator')
+	multiplicator = req.body.value
+	const response = {
+		time,
+		multiplicator,
+	}
+	logRes('ChangeMultiplicator', response)
+	res.json(response)
+})
+
 if (process.env.NODE_ENV === 'production') {
 	app.use(express.static('client/build'))
 

@@ -1,4 +1,4 @@
-const MODULE_NAME = 'BOARD'
+const MODULE_NAME = 'TIME'
 
 export const logReq = (requestName, data) => {
 	if (data) {

@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { ApiService } from '../../Services';
 
@@ -9,6 +9,13 @@ export const Main = () => {
 
   const fetchTime = useCallback(() => {
     api.getTime().then((data) => {
+      setTime(data.time);
+      setMultiplicator(data.multiplicator);
+    });
+  }, []);
+
+  const changeMultiplicator = useCallback((value) => {
+    api.changeMultiplicator(value).then((data) => {
       setTime(data.time);
       setMultiplicator(data.multiplicator);
     });
@@ -38,6 +45,41 @@ export const Main = () => {
           Multiplicator: 1 real second = {multiplicator} virtual minute
         </Typography>
       )}
+      <Box>
+        <Typography variant="h5" align="center" paddingBottom={'20px'}>
+          Change Multiplicator
+        </Typography>
+        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Button
+            variant="contained"
+            sx={{ margin: '0 5px' }}
+            onClick={() => changeMultiplicator(1)}
+          >
+            x1
+          </Button>
+          <Button
+            variant="contained"
+            sx={{ margin: '0 5px' }}
+            onClick={() => changeMultiplicator(2)}
+          >
+            x2
+          </Button>
+          <Button
+            variant="contained"
+            sx={{ margin: '0 5px' }}
+            onClick={() => changeMultiplicator(5)}
+          >
+            x5
+          </Button>
+          <Button
+            variant="contained"
+            sx={{ margin: '0 5px' }}
+            onClick={() => changeMultiplicator(10)}
+          >
+            x10
+          </Button>
+        </Box>
+      </Box>
     </Box>
   );
 };

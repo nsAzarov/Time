@@ -27,4 +27,11 @@ export class ApiService {
       JSON.stringify({ from: 'client' })
     );
   }
+
+  async changeMultiplicator(value) {
+    return await this.sendPostRequest(
+      '/ChangeMultiplicator',
+      JSON.stringify({ value })
+    );
+  }
 }
